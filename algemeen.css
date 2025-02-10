@@ -1,0 +1,165 @@
+/* Algemene stijlen */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Header */
+header {
+    background-color: #1e3d58; /* Blauwe balk */
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+header .logo img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+header .logo h1 {
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Navigatiebalk */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 15px 20px;
+    display: block;
+}
+
+nav ul li a:hover {
+    background: #333;
+}
+
+nav ul li a:visited {
+    color:white
+}
+
+/* Dropdownmenu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 0;
+    min-width: 200px;
+    top: 100%;
+    left: 0;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu li a {
+    color: black;
+    padding: 10px;
+    display: block;
+}
+
+.dropdown-menu li a:hover {
+    background: #ddd;
+}
+
+/* Hoofdinhoud */
+.content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.main-content {
+    flex: 2;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+/* Blauwe balk aan de rechterkant met afbeeldingen */
+.sidebar {
+    flex: 1;
+    background-color: #1e3d58;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar img {
+    width: 100%;
+    max-width: 250px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+/* Foto's sectie*/
+.image {
+    padding: 20px;
+    text-align: center;
+    background-color: white;
+ }
+
+ .images h2 {
+    margin-bottom: 20px;
+ }
+
+ .image-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+ }
+
+ .image-gallery img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+ }
+ 
+/* Footer */
+footer {
+    background-color: #1e3d58;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+footer .contact-info {
+    margin-bottom: 10px;
+}
+
+footer .social-media a {
+    text-decoration: none;
+    color: white;
+    margin: 0 10px;
+}
