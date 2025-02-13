@@ -6,6 +6,7 @@ body {
     background-color: #f4f4f4;
 }
 
+
 /* Header */
 header {
     background-color: #1e3d58; /* Blauwe balk */
@@ -59,6 +60,9 @@ nav ul li a:hover {
 nav ul li a:visited {
     color:white
 }
+a:visited{
+    color: :white;
+}
 
 /* Dropdownmenu */
 .dropdown-menu {
@@ -78,7 +82,7 @@ nav ul li a:visited {
 }
 
 .dropdown-menu li a {
-    color: black;
+    color: black !important;
     padding: 10px;
     display: block;
 }
@@ -152,6 +156,7 @@ footer {
     color: white;
     text-align: center;
     padding: 20px;
+
 }
 
 footer .contact-info {
