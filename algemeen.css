@@ -95,7 +95,7 @@ nav ul li a:hover {
 }
 
 .login-btn, .logout-btn {
-    background-color: #007BFF;
+    background-color: #1e3d58;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -106,17 +106,17 @@ nav ul li a:hover {
     background-color: #333;
 }
 
-/* Het inlogformulier wordt verborgen totdat de knop wordt aangeklikt */
 #login-form {
-    display: none;
+    display: none; /* Zorg ervoor dat het formulier standaard verborgen is */
     position: absolute;
     top: 50px;
-    right: 0;
+    right: 10px;
     background-color: #f9f9f9;
     padding: 20px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    z-index: 999; /* Zorgt ervoor dat het formulier boven de sidebar komt */
+    z-index: 999;
+    width: 300px;
 }
 
 #login-form form {
@@ -149,16 +149,6 @@ nav ul li a:hover {
     background-color: #333;
 }
 
-.login-form {
-    display: none;
-    position: absolute;
-    top: 50px;
-    right: 10px;
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
 
 /* Hoofdinhoud */
 .content-wrapper {

@@ -1,80 +1,81 @@
 <?php
 session_start();
-
-// Gebruikerslijst met SHA1-gehashte wachtwoorden
-$users = [
-    "admin" => sha1("wachtwoord1"),
-    "gebruiker1" => sha1("wachtwoord2"),
-    "gebruiker2" => sha1("wachtwoord3"),
-    "gebruiker3" => sha1("wachtwoord4"),
-    "gebruiker4" => sha1("wachtwoord5"),
-];
+include 'db.php';
 
 $login_error = "";
-$show_login_form = false; // Formulier standaard verborgen
+$show_login_form = false;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["username"] ?? "";
-    $password = sha1($_POST["password"] ?? "");
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["username"], $_POST["password"])) {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
 
-    if (!isset($users[$username])) {
-        $login_error = "Gebruikersnaam bestaat niet.";
-        
-    } elseif ($users[$username] !== $password) {
-        $login_error = "Wachtwoord is onjuist.";
-     
+    $stmt = $conn->prepare("SELECT wachtwoord FROM gebruikers WHERE gebruikersnaam = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        $stmt->bind_result($hashed_password);
+        $stmt->fetch();
+
+        if (password_verify($password, $hashed_password)) {
+            $_SESSION["logged_in"] = true;
+            $_SESSION["username"] = $username;
+            $_SESSION['LAST_ACTIVITY'] = time();
+            $redirect_page = $_SESSION['redirect_page'] ?? 'index.php?page=home_loggedin';
+            unset($_SESSION['redirect_page']);
+            header("Location: $redirect_page");
+            exit();
+        } else {
+            $login_error = "Wachtwoord is onjuist.";
+        }
     } else {
-        $_SESSION["loggedin"] = true;
-        $_SESSION["username"] = $username;
-        header("Location: home_loggedin.php"); // Verander dit naar de juiste pagina
-        exit();
+        $login_error = "Gebruikersnaam bestaat niet.";
     }
+    $stmt->close();
 }
 
-// Welke pagina moet worden ingeladen?
-//$page = $_GET['page'] ?? 'home';
-if(isset($_GET['page']) && !empty($_GET['page'])) {
-    $page = $_GET['page'];
-} else {
-    $page = 'Home';
+$page = $_GET['page'] ?? 'home';
+
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    $_SESSION['redirect_page'] = "index.php?page=$page";
 }
 
-include 'header.php'; // Voeg de header toe
+include 'header.php';
 
+$allowed_pages = ['home', 'diensten', 'vacatures', 'over-ons', 'nieuws', 'contact', 
+    'bitumen-dak-leggen', 'dakpannen-leggen', 'regenpijp-vervangen', 'pannen-schikken', 
+    'dak-reinigen', 'dakgoot-reinigen', 'spoed-nood-reparaties', 'dak-inspectie', 
+    'home_loggedin', 'facturen_loggedin', 'reviews_loggedin', 'mijn_profiel_loggedin'];
 
-// Beveiliging: alleen toegestane pagina’s laden
-$allowed_pages = ['home', 'diensten', 'vacatures', 'over-ons', 'nieuws', 'contact',
-                  'bitumen-dak-leggen', 'dakpannen-leggen', 'regenpijp-vervangen',
-                  'pannen-schikken', 'dak-reinigen', 'dakgoot-reinigen',
-                  'spoed-nood-reparaties', 'dak-inspectie'];
-
-$pagePath = "pages/" . $page . ".php"; // Zet het pad correct
+$pagePath = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] ? "logged_in_pages/$page.php" : "pages/$page.php";
 
 if (in_array($page, $allowed_pages) && file_exists($pagePath)) {
     include $pagePath;
 } else {
-    include "pages/home.php"; // Zorg ervoor dat home.php wordt geladen als standaard
+    include isset($_SESSION['logged_in']) && $_SESSION['logged_in'] ? "logged_in_pages/home_loggedin.php" : "pages/home.php";
 }
 
-include 'footer.php'; // Voeg de footer toe
-
-// Inlogformulier
-if (!$show_login_form) {
-    echo '<div id="login-form" style="display: none;"></div>';
-} else {
-    echo '<div id="login-form" style="display: block;">
-            <form action="index.php" method="POST">
-                <label for="username">Gebruikersnaam:</label>
-                <input type="text" name="username" id="username" required>
-                
-                <label for="password">Wachtwoord:</label>
-                <input type="password" name="password" id="password" required>
-                
-                <input type="submit" value="Inloggen">
-            </form>';
-    if ($login_error) {
-        echo '<p style="color: red;">' . $login_error . '</p>';
-    }
-    echo '</div>';
-}
+include 'footer.php';
 ?>
+
+<div id="login-form" style="display: none;">
+    <form action="index.php" method="POST">
+        <label for="username">Gebruikersnaam:</label>
+        <input type="text" name="username" id="username" required>
+        
+        <label for="password">Wachtwoord:</label>
+        <input type="password" name="password" id="password" required>
+        
+        <input type="submit" value="Inloggen">
+    </form>
+    <?php if (!empty($login_error)) { echo '<p style="color: red;">' . htmlspecialchars($login_error) . '</p>'; } ?>
+</div>
+
+<script>
+function toggleLoginForm() {
+    var form = document.getElementById('login-form');
+    form.style.display = form.style.display === 'block' ? 'none' : 'block';
+}
+</script>
+

@@ -1,10 +1,8 @@
 <?php
+include 'db.php';
 
+$logged_in = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
 
-// Controleer of de gebruiker is ingelogd
-$logged_in = isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true;
-
-// Sessie timeout instellen (bijv. 30 minuten)
 $timeout_duration = 1800;
 
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY']) > $timeout_duration) {
@@ -15,8 +13,6 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY']) >
 }
 $_SESSION['LAST_ACTIVITY'] = time();
 
-// Variabele om te bepalen of het inlogformulier moet worden weergegeven
-$show_login_form = isset($_POST['username']) && isset($login_error);
 ?>
 
 <!DOCTYPE html>
@@ -24,12 +20,13 @@ $show_login_form = isset($_POST['username']) && isset($login_error);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $page; ?></title>
+    <title><?php echo htmlspecialchars($page ?? 'Dakmode'); ?></title>
     <link rel="stylesheet" href="/algemeen.css">
 </head>
-<header>
+<body>
 
-    <a href="home.php" class="logo">
+<header>
+    <a href="index.php" class="logo">
         <img src="images/logo.webp" alt="Dakmode logo">
         <h1>Dakmode</h1>
     </a>
@@ -37,12 +34,11 @@ $show_login_form = isset($_POST['username']) && isset($login_error);
     <nav>
         <ul>
             <?php if ($logged_in) : ?>
-                <li><a href="home_loggedin.php">Home</a></li>
-                <li><a href="facturen_loggedin.php">Facturen</a></li>
-                <li><a href="reviews_loggedin.php">Reviews</a></li>
-                <li><a href="mijn_profiel_loggedin.php">Mijn Profiel</a></li>
+                <li><a href="index.php?page=home_loggedin">Home</a></li>
+                <li><a href="index.php?page=facturen_loggedin">Facturen</a></li>
+                <li><a href="index.php?page=reviews_loggedin">Reviews</a></li>
+                <li><a href="index.php?page=mijn_profiel_loggedin">Mijn Profiel</a></li>
                 <li>
-                    <!-- Uitlogformulier -->
                     <form action="logout.php" method="POST">
                         <button type="submit" class="logout-btn">Uitloggen</button>
                     </form>
@@ -68,21 +64,11 @@ $show_login_form = isset($_POST['username']) && isset($login_error);
                 <li><a href="index.php?page=contact">Contact</a></li>
                 <li>
                     <button class="login-btn" onclick="toggleLoginForm()">Inloggen</button>
-                    <div id="login-form" class="login-form" style="display: <?php echo ($show_login_form) ? 'block' : 'none'; ?>;">
-                        <form action="index.php" method="POST">
-                            <label for="username">Gebruikersnaam:</label>
-                            <input type="text" name="username" id="username" required>
-                            <label for="password">Wachtwoord:</label>
-                            <input type="password" name="password" id="password" required>
-                            <input type="submit" value="Inloggen">
-                        </form>
-                        <?php if (isset($login_error)): ?>
-                            <p style="color: red;"><?php echo $login_error; ?></p>
-                        <?php endif; ?>
-                    </div>
                 </li>
             <?php endif; ?>
         </ul>
     </nav>
-
 </header>
+</body>
+</html>
+
