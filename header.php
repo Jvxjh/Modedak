@@ -1,31 +1,16 @@
-<?php
-include 'db.php';
-
-$logged_in = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
-
-$timeout_duration = 1800;
-
-if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY']) > $timeout_duration) {
-    session_unset();
-    session_destroy();
-    header("Location: index.php");
-    exit();
-}
-$_SESSION['LAST_ACTIVITY'] = time();
-
-?>
 
 <!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($page ?? 'Dakmode'); ?></title>
+    <title><?php echo htmlspecialchars($page); ?></title>
     <link rel="stylesheet" href="/algemeen.css">
 </head>
 <body>
 
 <header>
+
     <a href="index.php" class="logo">
         <img src="images/logo.webp" alt="Dakmode logo">
         <h1>Dakmode</h1>
@@ -33,17 +18,6 @@ $_SESSION['LAST_ACTIVITY'] = time();
 
     <nav>
         <ul>
-            <?php if ($logged_in) : ?>
-                <li><a href="index.php?page=home_loggedin">Home</a></li>
-                <li><a href="index.php?page=facturen_loggedin">Facturen</a></li>
-                <li><a href="index.php?page=reviews_loggedin">Reviews</a></li>
-                <li><a href="index.php?page=mijn_profiel_loggedin">Mijn Profiel</a></li>
-                <li>
-                    <form action="logout.php" method="POST">
-                        <button type="submit" class="logout-btn">Uitloggen</button>
-                    </form>
-                </li>
-            <?php else : ?>
                 <li><a href="index.php">Home</a></li>
                 <li class="dropdown">
                     <a href="#">Diensten</a>
@@ -65,7 +39,6 @@ $_SESSION['LAST_ACTIVITY'] = time();
                 <li>
                     <button class="login-btn" onclick="toggleLoginForm()">Inloggen</button>
                 </li>
-            <?php endif; ?>
         </ul>
     </nav>
 </header>
