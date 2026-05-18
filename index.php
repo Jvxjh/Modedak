@@ -1,64 +1,56 @@
-<?php
-session_start();
+<?php 
 
-// Gebruikerslijst met SHA1-gehashte wachtwoorden
-$users = [
-    "admin" => sha1("wachtwoord1"),
-    "gebruiker1" => sha1("wachtwoord2"),
-    "gebruiker2" => sha1("wachtwoord3"),
-    "gebruiker3" => sha1("wachtwoord4"),
-    "gebruiker4" => sha1("wachtwoord5"),
-];
+
 
 $login_error = "";
 $show_login_form = false; // Formulier standaard verborgen
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"] ?? "";
-    $password = sha1($_POST["password"] ?? "");
+    $password = $_POST["password"] ?? "";
 
-    if (!isset($users[$username])) {
-        $login_error = "Gebruikersnaam bestaat niet.";
-        
-    } elseif ($users[$username] !== $password) {
-        $login_error = "Wachtwoord is onjuist.";
-     
+    $stmt = $conn->prepare("SELECT wachtwoord FROM gebruikers WHERE gebruikersnaam = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        $stmt->bind_result($hashed_password);
+        $stmt->fetch();
+
+        if (password_verify($password, $hashed_password)) {
+            $_SESSION["loggedin"] = true;
+            $_SESSION["username"] = $username;
+            header("Location: home_loggedin.php");
+            exit();
+        } else {
+            $login_error = "Wachtwoord is onjuist.";
+        }
     } else {
-        $_SESSION["loggedin"] = true;
-        $_SESSION["username"] = $username;
-        header("Location: home_loggedin.php"); // Verander dit naar de juiste pagina
-        exit();
+        $login_error = "Gebruikersnaam bestaat niet.";
     }
+    $stmt->close();
 }
 
-// Welke pagina moet worden ingeladen?
-//$page = $_GET['page'] ?? 'home';
-if(isset($_GET['page']) && !empty($_GET['page'])) {
-    $page = $_GET['page'];
-} else {
-    $page = 'Home';
-}
+$page = $_GET['page'] ?? 'home';
 
-include 'header.php'; // Voeg de header toe
+include 'header.php';
 
-
-// Beveiliging: alleen toegestane pagina’s laden
 $allowed_pages = ['home', 'diensten', 'vacatures', 'over-ons', 'nieuws', 'contact',
                   'bitumen-dak-leggen', 'dakpannen-leggen', 'regenpijp-vervangen',
                   'pannen-schikken', 'dak-reinigen', 'dakgoot-reinigen',
                   'spoed-nood-reparaties', 'dak-inspectie'];
 
-$pagePath = "pages/" . $page . ".php"; // Zet het pad correct
+$pagePath = "pages/" . $page . ".php";
 
 if (in_array($page, $allowed_pages) && file_exists($pagePath)) {
     include $pagePath;
 } else {
-    include "pages/home.php"; // Zorg ervoor dat home.php wordt geladen als standaard
+    include "pages/index.php";
 }
 
-include 'footer.php'; // Voeg de footer toe
+include 'footer.php';
 
-// Inlogformulier
 if (!$show_login_form) {
     echo '<div id="login-form" style="display: none;"></div>';
 } else {
@@ -78,3 +70,11 @@ if (!$show_login_form) {
     echo '</div>';
 }
 ?>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo htmlspecialchars($page); ?></title>
+    <link rel="stylesheet" href="/algemeen.css">
+</head>
