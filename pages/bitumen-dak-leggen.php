@@ -22,18 +22,23 @@ HOE ER TE WERK WORDT GEGAAN: HET STAPPENPLAN
 </h3>
 <p>
 Vakmanschap staat voorop bij de montage. Om de kwaliteit en de lange levensduur te garanderen, wordt er altijd gewerkt volgens een vast en beproefd proces.
-
-Stap 1: Inspectie en voorbereiding
+</p>
+<h3>
+Stap 1:</h3> <p> Inspectie en voorbereiding
 Voordat er gestart wordt, vindt er een grondige inspectie van de onderconstructie of het dakbeschot plaats. De ondergrond moet volledig bezemvchoon, droog en vetvrij zijn. Eventuele oude, rotte delen worden direct in overleg vervangen.
-
-Stap 2: Aanbrengen van de onderlaag
+</p>
+<h3>
+Stap 2:</h3> <p> Aanbrengen van de onderlaag
 Er wordt eerst een geschikte onderlaag mechanisch bevestigd met spijkers of los gelegd. Deze laag fungeert als extra buffer, vangt de werking van het gebouw op en zorgt ervoor dat de toplaag later perfect hecht.
-
-Stap 3: De bitumen toplaag branden
+</p>
+<h3>
+Stap 3: </h3> <p>De bitumen toplaag branden
 Met behulp van een professionele gasbrander wordt de toplaag vloeibaar gemaakt en gecontroleerd uitgerold. Hierbij wordt exact de juiste temperatuur gehanteerd, zodat het bitumen optimaal samensmelt met de onderlaag en de naden, met een overlap van minimaal 10 centimeter, volledig waterdicht dichtvloeien.
-
-Stap 4: Afwerking van de dakranden en details
-De randen worden strak afgewerkt met zinken of aluminium daktrimmen om opwaaiing door storm te voorkomen. Ook cruciale details, zoals de hemelwaterafvoer, worden met uiterste precisie ingewerkt zodat er nooit water op het dak kan blijven staan. Dit garandeert een resultaat dat jarenlang meegaat.</p>
+</p>
+<h3>
+Stap 4:</h3> <p> Afwerking van de dakranden en details
+De randen worden strak afgewerkt met zinken of aluminium daktrimmen om opwaaiing door storm te voorkomen. Ook cruciale details, zoals de hemelwaterafvoer, worden met uiterste precisie ingewerkt zodat er nooit water op het dak kan blijven staan. Dit garandeert een resultaat dat jarenlang meegaat.
+</p>
         </section><aside class="sidebar">
             <h3>Projecten</h3>
             <img src="images/bitumen1.jpg" alt="Bitumen dak project 1">
