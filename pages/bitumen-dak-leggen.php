@@ -1,11 +1,11 @@
     <main class="content-wrapper">
         <section class="main-content">
             <h2>Bitumen Dak Leggen</h2>
-            <p>BITUMEN DAK LEGGEN
+            <p>
 Bitumen, in de volksmond ook wel dakleer genoemd, is al decennialang een van de meest gekozen en betrouwbare materialen voor platte en licht hellende daken. Of het nu gaat om een aanbouw, garage, dakkapel of een groot bedrijfspand in de regio Zwolle; een vakkundig gelegd bitumen dak biedt een ijzersterke bescherming tegen alle Nederlandse weersinvloeden.</p>
-<h1>
+<h2>
 DE VOORDELEN VAN EEN BITUMEN DAK
-</h1>
+</h2>
 <p>
 Het kiezen voor bitumen brengt grote voordelen met zich mee op het gebied van duurzaamheid en prijs-kwaliteitverhouding.
 
@@ -16,8 +16,11 @@ Daarnaast heeft het een lange levensduur. Modern gemodificeerd bitumen is elasti
 Mocht er na verloop van tijd stormschade of een lekkage ontstaan, dan is bitumen lokaal zeer snel en efficiënt te herstellen zonder dat direct het hele dak vervangen hoeft te worden.
 
 Tot slot biedt het een uitstekende prijs-kwaliteitverhouding. Het is een relatief voordelig materiaal in aanschaf en installatie vergeleken met andere dakbedekkingen, terwijl het maximale bescherming biedt.
-
+</p>
+<h3>
 HOE ER TE WERK WORDT GEGAAN: HET STAPPENPLAN
+</h3>
+<p>
 Vakmanschap staat voorop bij de montage. Om de kwaliteit en de lange levensduur te garanderen, wordt er altijd gewerkt volgens een vast en beproefd proces.
 
 Stap 1: Inspectie en voorbereiding
