@@ -2,9 +2,11 @@
         <section class="main-content">
             <h2>Bitumen Dak Leggen</h2>
             <p>BITUMEN DAK LEGGEN
-Bitumen, in de volksmond ook wel dakleer genoemd, is al decennialang een van de meest gekozen en betrouwbare materialen voor platte en licht hellende daken. Of het nu gaat om een aanbouw, garage, dakkapel of een groot bedrijfspand in de regio Zwolle; een vakkundig gelegd bitumen dak biedt een ijzersterke bescherming tegen alle Nederlandse weersinvloeden.
-
+Bitumen, in de volksmond ook wel dakleer genoemd, is al decennialang een van de meest gekozen en betrouwbare materialen voor platte en licht hellende daken. Of het nu gaat om een aanbouw, garage, dakkapel of een groot bedrijfspand in de regio Zwolle; een vakkundig gelegd bitumen dak biedt een ijzersterke bescherming tegen alle Nederlandse weersinvloeden.</p>
+<h1>
 DE VOORDELEN VAN EEN BITUMEN DAK
+</h1>
+<p>
 Het kiezen voor bitumen brengt grote voordelen met zich mee op het gebied van duurzaamheid en prijs-kwaliteitverhouding.
 
 Ten eerste is het materiaal volledig waterdicht. Door de brandmethode smelten de overlappingen van de banen volledig samen. Dit zorgt voor een naadloze en waterdichte barrière.
